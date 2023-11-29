@@ -13,16 +13,26 @@
       type="text/javascript"
       th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${kakaoMapApiKey} + '&libraries=services'"
     ></script>
-    <script type="text/javascript">
+    <script th:inline="javascript">
       document.addEventListener("DOMContentLoaded", function () {
-        var container = document.getElementById("map");
-        var options = {
-          center: new kakao.maps.LatLng(33.450701, 126.570667),
-          level: 3,
-        };
-
-        var map = new kakao.maps.Map(container, options);
+          var container = document.getElementById("map");
+          var options = {
+              center: new kakao.maps.LatLng(35.17970, 129.07514),
+              level: 3
+          };
+  
+          var map = new kakao.maps.Map(container, options);
+  
+          var positions = /*[[${DTO.data}]]*/ [];
+  
+          for (var i = 0; i < positions.length; i++) {
+              var marker = new kakao.maps.Marker({
+                  map: map,
+                  position: new kakao.maps.LatLng(positions[i].위도, positions[i].경도),
+                  title: positions[i].가맹점명칭
+              });
+          }
       });
-    </script>
+  </script>
   </body>
 </html>
