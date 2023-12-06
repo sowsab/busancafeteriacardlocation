@@ -15,24 +15,62 @@
     ></script>
     <script th:inline="javascript">
       document.addEventListener("DOMContentLoaded", function () {
-          var container = document.getElementById("map");
-          var options = {
-              center: new kakao.maps.LatLng(35.17970, 129.07514),
-              level: 3
-          };
-  
-          var map = new kakao.maps.Map(container, options);
-  
-          var positions = /*[[${DTO.data}]]*/ [];
-  
-          for (var i = 0; i < positions.length; i++) {
-              var marker = new kakao.maps.Marker({
-                  map: map,
-                  position: new kakao.maps.LatLng(positions[i].위도, positions[i].경도),
-                  title: positions[i].가맹점명칭
-              });
-          }
+        var container = document.getElementById("map");
+        var options = {
+          center: new kakao.maps.LatLng(35.1797, 129.07514),
+          level: 3,
+        };
+
+        var map = new kakao.maps.Map(container, options);
+
+        var positions = /*[[${DTO.data}]]*/ [];
+        var infowindow = new kakao.maps.InfoWindow({
+          content: "",
+          removable: true,
+        });
+
+        for (var i = 0; i < positions.length; i++) {
+          var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(
+              positions[i].위도,
+              positions[i].경도
+            ),
+            title: positions[i].가맹점명칭,
+          });
+
+          kakao.maps.event.addListener(
+            marker,
+            "click",
+            (function (marker, position) {
+              return function () {
+                infowindow.setContent(
+                  '<div style="padding:10px;">' +
+                    "<h3>" +
+                    position.가맹점명칭 +
+                    "</h3>" +
+                    "<p>도로명주소: " +
+                    position.도로명주소 +
+                    "</p>" +
+                    "<p>지번주소: " +
+                    position.지번주소 +
+                    "</p>" +
+                    "<p>업종: " +
+                    position.업종 +
+                    "</p>" +
+                    "</div>"
+                );
+
+                infowindow.open(map, marker);
+              };
+            })(marker, positions[i])
+          );
+        }
+
+        kakao.maps.event.addListener(map, "click", function () {
+          infowindow.close();
+        });
       });
-  </script>
+    </script>
   </body>
 </html>
