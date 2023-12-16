@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.busancafeteriacardlocation.domain.map.dto.APIResponseDTO;
-import com.example.busancafeteriacardlocation.domain.map.service.MainService;
+import com.example.busancafeteriacardlocation.domain.map.dto.APIRequestDTO;
+import com.example.busancafeteriacardlocation.domain.map.service.InitService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api")
 public class TestController {
     
-    private final MainService mainService;
+    private final InitService mainService;
     
-    @GetMapping("/test")
-    public APIResponseDTO getTest() {
+    // @GetMapping("/test")
+    // public APIRequestDTO getTest() {
         
-        return mainService.getLocations();
+    //     return mainService.getLocations();
 
-    }
+    // }
 }

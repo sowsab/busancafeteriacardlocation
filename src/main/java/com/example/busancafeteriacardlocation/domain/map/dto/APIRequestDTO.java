@@ -1,14 +1,19 @@
 package com.example.busancafeteriacardlocation.domain.map.dto;
 
 import java.util.List;
+
+import groovy.transform.builder.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class APIResponseDTO {
+@Setter
+@Builder
+public class APIRequestDTO {
     private int currentCount;
     private List<APIResponseDTOData> data;
     private int matchCount;

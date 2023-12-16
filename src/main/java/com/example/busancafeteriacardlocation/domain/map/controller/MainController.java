@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.busancafeteriacardlocation.domain.map.service.MainService;
+import com.example.busancafeteriacardlocation.domain.map.service.InitService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,13 +16,13 @@ public class MainController {
     @Value("${kakao.map.api-key}")
     private String kakaoApiKey;
 
-    private final MainService mainService;
+    private final InitService initService;
 
     @GetMapping("/")
     public String getMainPage(Model model) {
 
         model.addAttribute("kakaoMapApiKey", kakaoApiKey);
-        model.addAttribute("DTO", mainService.getLocations());
+        // model.addAttribute("DTO", initService.getLocations());
 
         return "main";
     }
