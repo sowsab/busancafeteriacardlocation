@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div>테스트</div>
+    <div>검색 테스트</div>
     <div>
       <input type="text" name="search" id="search" />
       <button onclick="goSearchPage()">검색</button>
@@ -27,12 +27,13 @@
 
         var map = new kakao.maps.Map(container, options);
 
-        var positions = /*[[${DTO.reqMapDataDTOList}]]*/ [];
+        var positions = /*[[${DTO.reqSelectedMapDataDTOlist}]]*/ [];
         var infowindow = new kakao.maps.InfoWindow({
           content: "",
           removable: true,
         });
 
+        /*[# th:each="position : ${DTO.reqSelectedMapDataDTOlist}"]*/
         for (var i = 0; i < positions.length; i++) {
           var marker = new kakao.maps.Marker({
             map: map,
@@ -77,22 +78,23 @@
             })(marker, positions[i])
           );
         }
+        /*[/]*/
 
         kakao.maps.event.addListener(map, "click", function () {
           infowindow.close();
         });
       });
-
+      
       const goSearchPage = () => {
         let searchInput = document.getElementById("search");
         let searchValue = searchInput.value;
 
         if (searchValue.trim() !== "") {
-            window.location.href = "/search/" + encodeURIComponent(searchValue);
+          window.location.href = "/search/" + encodeURIComponent(searchValue);
         } else {
-            alert("검색어를 입력하세요.");
+          alert("검색어를 입력하세요.");
         }
-    };
+      };
     </script>
   </body>
 </html>
