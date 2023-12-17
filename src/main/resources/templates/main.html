@@ -23,7 +23,7 @@
 
         var map = new kakao.maps.Map(container, options);
 
-        var positions = /*[[${DTO.data}]]*/ [];
+        var positions = /*[[${DTO.reqMapDataDTOList}]]*/ [];
         var infowindow = new kakao.maps.InfoWindow({
           content: "",
           removable: true,
@@ -33,10 +33,10 @@
           var marker = new kakao.maps.Marker({
             map: map,
             position: new kakao.maps.LatLng(
-              positions[i].위도,
-              positions[i].경도
+              positions[i].latitude,
+              positions[i].longitude
             ),
-            title: positions[i].가맹점명칭,
+            title: positions[i].name,
           });
 
           kakao.maps.event.addListener(
@@ -47,18 +47,18 @@
                 infowindow.setContent(
                   '<div style="padding:10px;">' +
                     "<h3>" +
-                    position.가맹점명칭 +
+                    position.name +
                     "</h3>" +
                     "<p>도로명주소: " +
-                    position.도로명주소 +
+                    position.streetAddress +
                     "</p>" +
                     "<p>지번주소: " +
-                    position.지번주소 +
+                    position.numberAddress +
                     "</p>" +
                     "<p>업종: " +
-                    position.업종 +
+                    position.sector +
                     "</p>" +
-                    '<p><a href="https://map.kakao.com/link/to/' + position.가맹점명칭 + ',' + position.위도 + ',' + position.경도 + '">길찾기</a></p>' +
+                    '<p><a href="https://map.kakao.com/link/to/' + position.name + ',' + position.latitude + ',' + position.longitude + '">길찾기</a></p>' +
                     "</div>"
                 );
 

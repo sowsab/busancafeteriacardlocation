@@ -9,15 +9,17 @@ import com.example.busancafeteriacardlocation.domain.map.dto.APIRequestDTO;
 import com.example.busancafeteriacardlocation.model.map.entity.MapEntity;
 import com.example.busancafeteriacardlocation.model.map.repository.MapRepository;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
 @Service
+@RequiredArgsConstructor
 public class InitService {
 
-    @Autowired
-    private MapRepository mapEntityRepository;
+    private final MapRepository mapEntityRepository;
 
     @Value("${open-api.busan-cafeteria.api-key}")
     private String openApiKey;
