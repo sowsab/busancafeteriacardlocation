@@ -8,6 +8,10 @@
   <body>
     <div>테스트</div>
     <div>
+      <button onclick="goLogin()">로그인</button>
+      <button onclick="goUpdate()">회원정보 변경</button>
+    </div>
+    <div>
       <input type="text" name="search" id="search" />
       <button onclick="goSearchPage()">검색</button>
     </div>
@@ -93,6 +97,14 @@
             alert("검색어를 입력하세요.");
         }
     };
+    
+    const goLogin = () => {
+      window.location.href = "/auth/login";
+    }
+
+    const goUpdate = () => {
+      window.location.href = "/auth/update";
+    }
     </script>
   </body>
 </html>
