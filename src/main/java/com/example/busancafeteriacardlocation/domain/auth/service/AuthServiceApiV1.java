@@ -28,6 +28,8 @@ public class AuthServiceApiV1 {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
 
+    // 로그인 기능 구현
+
     public ResponseEntity<?> login(ReqLoginDTO dto, HttpSession session) {
 
         Optional<UserEntity> userEntityOptional = userRepository.findById(dto.getUser().getId());
@@ -51,6 +53,8 @@ public class AuthServiceApiV1 {
                 HttpStatus.OK);
 
     }
+
+    // 회원가입 기능 구현
 
     public ResponseEntity<?> join(ReqJoinDTO dto) {
 
@@ -92,6 +96,8 @@ public class AuthServiceApiV1 {
                 .message("회원가입에 성공했습니다.")
                 .build(), HttpStatus.OK);
     }
+
+    // 회원정보 업데이트 구현
 
     public ResponseEntity<?> update(ReqUpdateDTO dto, HttpSession session) {
 

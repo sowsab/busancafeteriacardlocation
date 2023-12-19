@@ -15,6 +15,8 @@ public class BusancafeteriacardlocationApplication {
 		SpringApplication.run(BusancafeteriacardlocationApplication.class, args);
 	}
 
+	// 서버가 시작할때 api에 요청하는 코드
+
 	@Component
 	public static class DataInitializer implements CommandLineRunner {
 	

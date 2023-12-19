@@ -19,6 +19,8 @@ public class AuthService {
     
     private final UserRepository userRepository;
 
+    // 회원정보 불러오기
+
     public ResGetUpdateDataDTO getUpdateUserData(HttpSession session) {
 
         LoginDTO sessionDTO = (LoginDTO) session.getAttribute("dto");

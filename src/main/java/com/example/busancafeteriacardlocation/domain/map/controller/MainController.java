@@ -14,10 +14,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController {
 
+    // 메인화면(지도) 관련 기능 구현
+
     @Value("${kakao.map.api-key}")
     private String kakaoApiKey;
 
     private final MainService mainService;
+
+    // 메인화면 페이지
 
     @GetMapping("/")
     public String getMainPage(Model model) {
@@ -27,6 +31,8 @@ public class MainController {
 
         return "main";
     }
+
+    // 검색 결과 페이지
 
     @GetMapping("/search/{keyword}")
     public String getSearchPage(Model model, @PathVariable String keyword) {

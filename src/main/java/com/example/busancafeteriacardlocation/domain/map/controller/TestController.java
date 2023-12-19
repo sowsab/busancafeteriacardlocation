@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api")
 public class TestController {
     
+    // api가 동작하는지 테스트 할때 사용, mainsevice는 현재 InitService로 바뀜
+
     private final InitService mainService;
     
     // @GetMapping("/test")

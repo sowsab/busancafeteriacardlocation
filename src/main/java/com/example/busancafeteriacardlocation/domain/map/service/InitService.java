@@ -25,10 +25,14 @@ public class InitService {
 
     private static final int PAGE_SIZE = 10000;
 
+    // 받아온 데이터를 데이터베이스에 저장하는 코드
+
     public void saveLocations() {
         List<MapEntity> mapEntities = getAndMapLocations();
         mapEntityRepository.saveAll(mapEntities);
     }
+
+    // api에서 데이터를 받아오는 코드
 
     private List<MapEntity> getAndMapLocations() {
         List<MapEntity> mapEntities = new ArrayList<>();
@@ -61,6 +65,8 @@ public class InitService {
         return mapEntities;
     }
 
+    // api 주소
+
     private String buildApiUrl(int currentPage) {
         return "http://api.odcloud.kr/api/15102055/v1/uddi:122cc22d-cde3-41d0-83c8-db83298b994f" +
                 "?page=" + currentPage +
@@ -68,6 +74,8 @@ public class InitService {
                 "&returnType=JSON" +
                 "&serviceKey=" + openApiKey;
     }
+
+    // 받아온 데이터를 엔티티로 변환
 
     private MapEntity mapDTOToEntity(APIRequestDTO.APIResponseDTOData apiResponseData) {
         return MapEntity.builder()
